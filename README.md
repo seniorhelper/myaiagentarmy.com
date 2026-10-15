@@ -1,2 +1,1 @@
-# myaiagentarmy.com
-myaiagentarmy.com
+Static site.
