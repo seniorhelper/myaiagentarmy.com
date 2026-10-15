@@ -51,7 +51,8 @@ var ICONS={
  heart:'<path d="M12 21s-7.5-4.6-9.5-9.3C1 7.9 3.3 4.5 6.8 4.5c2 0 3.6 1.1 5.2 3 1.6-1.9 3.2-3 5.2-3 3.5 0 5.8 3.4 4.3 7.2C19.5 16.4 12 21 12 21z"/>',
  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>',
  brain:'<path d="M9 4a3 3 0 00-3 3 3 3 0 00-2 5 3 3 0 002 5 3 3 0 003 3h1V4zM15 4a3 3 0 013 3 3 3 0 012 5 3 3 0 01-2 5 3 3 0 01-3 3h-1V4z"/>',
- check:'<path d="M5 12l5 5L20 7"/>'
+ check:'<path d="M5 12l5 5L20 7"/>',
+ bell:'<path d="M6 9a6 6 0 0112 0c0 6 3 8 3 8H3s3-2 3-8M10 20a2 2 0 004 0"/>'
 };
 function icon(n){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(ICONS[n]||ICONS.bolt)+'</svg>';}
 window.MAA={SQ:SQ,bot:bot,icon:icon,shade:shade,RM:RM};

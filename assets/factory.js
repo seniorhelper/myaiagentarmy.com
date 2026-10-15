@@ -6,9 +6,9 @@ var M=window.MAA,SQ=M.SQ;
 
 /* Starting prices — edit here and on /pricing/ together */
 var PRICE={
-  scout:{build:1500,sto:149},
-  specialist:{build:3500,sto:299},
-  commander:{build:7500,sto:599},
+  scout:{build:1500,sto:149,setup:500},
+  specialist:{build:3500,sto:299,setup:1000},
+  commander:{build:7500,sto:599,setup:1500},
   care:99, blueprint:750,
   copyBuild:.5, copySto:.7,           /* extra copies of an agent you already have */
   volBuild:[[25,.20],[10,.15],[5,.10]],
@@ -60,7 +60,7 @@ var PRESETS=[
  ["5-location army","40 agents",{"ai-receptionist":5,"after-hours":5,"appointment-setter":5,"review-requester":5,"gbp-poster":5,"scheduler":5,"lead-responder":5,"commander":1,"reporting":1,"bookkeeping-prep":1,"invoice-chaser":1,"content-drafter":1}],
  ["Life admin","3 agents",{"life-admin":1,"family-calendar":1,"bill-tracker":1}]
 ];
-var q={},model="own",help="dfy",tab="all";
+var panes0,q={},model="own",help="dfy",tab="all",lane="ready",ctools="1–2",cscope={label:"Single custom workflow",price:"from $4,000"};
 
 /* build UI */
 var presetsEl=root.querySelector(".presets"),tabsEl=root.querySelector(".tabs"),rolesEl=root.querySelector(".roles");
@@ -99,10 +99,10 @@ function set(id,n){
 }
 function vol(t,tbl){for(var i=0;i<tbl.length;i++)if(t>=tbl[i][0])return tbl[i][1];return 0}
 function calc(){
-  var t=total(),build=0,sto=0;
-  for(var k in q){var r=BY[k],p=PRICE[r[3]],n=q[k];build+=p.build+(n-1)*p.build*PRICE.copyBuild;sto+=p.sto+(n-1)*p.sto*PRICE.copySto;}
+  var t=total(),build=0,sto=0,setup=0;
+  for(var k in q){var r=BY[k],p=PRICE[r[3]],n=q[k];build+=p.build+(n-1)*p.build*PRICE.copyBuild;sto+=p.sto+(n-1)*p.sto*PRICE.copySto;setup+=p.setup+(n-1)*p.setup*PRICE.copyBuild;}
   var vb=vol(t,PRICE.volBuild),vs=vol(t,PRICE.volSto);
-  return{t:t,build:build*(1-vb),vb:vb,sto:sto*(1-vs),vs:vs,care:t*PRICE.care};
+  return{t:t,build:build*(1-vb),vb:vb,sto:sto*(1-vs),vs:vs,setup:setup*(1-vb),care:t*PRICE.care};
 }
 var form=root.querySelector(".formation"),ring=root.querySelector(".ring .fg"),ringN=root.querySelector(".ring b span"),list=root.querySelector(".army__list"),est=root.querySelector(".est"),hint=root.querySelector("[data-hint]"),mobBar=document.querySelector(".fac-mob");
 var CIRC=2*Math.PI*27;ring.style.strokeDasharray=CIRC;
@@ -126,13 +126,14 @@ function render(){
   var e="";
   if(!t)e='<div class="est__row"><span>Add agents to see your estimate</span></div>';
   else if(model==="own"){
-    e='<div class="est__row big"><span>Development, from</span><b>'+money(c.build)+'</b></div>'+
+    e='<div class="est__row big"><span>Own it, from</span><b>'+money(c.build)+'</b></div>'+
       (c.vb?'<div class="est__row"><span>Estimated volume pricing</span><b>−'+Math.round(c.vb*100)+'%</b></div>':'')+
       (help==="dfy"?'<div class="est__row"><span>Agent Care (monitoring + tuning)</span><b>'+money(c.care)+'/mo</b></div>':'<div class="est__row"><span>Agent Care</span><b>optional</b></div>')+
       '<div class="est__row"><span>Agent Blueprint</span><b>'+money(PRICE.blueprint)+'*</b></div>'+
       '<div class="est__row"><span>Deployment</span><b>scoped after Blueprint</b></div>';
   }else{
     e='<div class="est__row big"><span>Monthly, from</span><b>'+money(c.sto)+'/mo</b></div>'+
+      '<div class="est__row"><span>One-time setup, from</span><b>'+money(c.setup)+'</b></div>'+
       (c.vs?'<div class="est__row"><span>Estimated volume pricing</span><b>−'+Math.round(c.vs*100)+'%</b></div>':'')+
       '<div class="est__row"><span>Agent Care</span><b>included</b></div>'+
       '<div class="est__row"><span>Term</span><b>2–4 years + buyout</b></div>'+
@@ -142,30 +143,51 @@ function render(){
   est.innerHTML=e+'<p class="est__note">'+hl+' *Blueprint credited toward your build within 60 days. Estimates cover development only; usage (AI model, phone minutes, software) is billed at cost or runs on your accounts. Starting points, not a quote.</p>';
   /* commander hint */
   hint.classList.toggle("on",t>=6&&!q.commander);
-  if(mobBar){mobBar.querySelector("b").textContent=t;mobBar.querySelector("em").textContent=t?(model==="own"?"from "+money(c.build):"from "+money(c.sto)+"/mo"):"start building";}
+  if(mobBar){var ms=mobBar.querySelector("span");if(lane==="custom"){ms.innerHTML="Custom build · <em>see estimate</em>";}else{ms.innerHTML="<b>"+t+"</b> "+(t===1?"agent":"agents")+" · <em>"+(t?(model==="own"?"from "+money(c.build):"from "+money(c.sto)+"/mo + setup"):"start building")+"</em>";}}
   try{localStorage.setItem("maa-army",JSON.stringify({q:q,model:model,help:help}))}catch(err){}
 }
 function pulse(){if(M.RM)return;var a=root.querySelector(".army");a.animate([{transform:"scale(1)"},{transform:"scale(1.015)"},{transform:"scale(1)"}],{duration:450});}
 hint.querySelector("button").addEventListener("click",function(){set("commander",1)});
-root.querySelectorAll(".seg button").forEach(function(b){b.addEventListener("click",function(){model=b.dataset.m;root.querySelectorAll(".seg button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b))});render();})});
+panes0=root.querySelector('[data-pane="ready"]');
+panes0.querySelectorAll(".seg button").forEach(function(b){b.addEventListener("click",function(){model=b.dataset.m;panes0.querySelectorAll(".seg button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b))});render();})});
 root.querySelector("#help").addEventListener("change",function(){help=this.value;render();});
 
 /* summary for the form */
 M.beforeSubmit=function(f){
   var ta=f.querySelector('[name="Army"]');if(!ta)return;var c=calc(),lines=[];
+  var ln=f.querySelector('[name="Lane"]');if(ln)ln.value=lane==="custom"?"Custom-built":"Ready-made";
+  if(lane==="custom"){ta.value="Custom build: "+cscope.label+" ("+cscope.price+")\nSystems to connect: "+ctools;return;}
   CAT.forEach(function(r){if(q[r[0]])lines.push(q[r[0]]+" x "+r[1]+" ("+tierName(r[3])+")")});
   lines.push("Total agents: "+c.t);
-  lines.push("Model: "+(model==="own"?"Build & Own, dev from "+money(c.build)+(help==="dfy"?" + Care "+money(c.care)+"/mo":""):"Subscribe-to-Own, from "+money(c.sto)+"/mo"));
+  lines.push("Model: "+(model==="own"?"Own it, from "+money(c.build)+(help==="dfy"?" + Care "+money(c.care)+"/mo":""):"Subscribe-to-Own, from "+money(c.sto)+"/mo + setup from "+money(c.setup)));
   lines.push("Help level: "+{dfy:"Done-For-You",copilot:"Co-Pilot",handoff:"Handoff"}[help]);
   ta.value=lines.join("\n");
 };
 
+/* lanes */
+var panes={ready:root.querySelector('[data-pane="ready"]'),custom:root.querySelector('[data-pane="custom"]')};
+function setLane(l){lane=l;root.querySelectorAll(".lanes button").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.lane===l))});panes.ready.hidden=l!=="ready";panes.custom.hidden=l!=="custom";if(l==="custom")cest();render();}
+root.querySelectorAll(".lanes button").forEach(function(b){b.addEventListener("click",function(){setLane(b.dataset.lane)})});
+var cviz=root.querySelector("[data-cviz]");
+function cest(){
+  var n={single:1,multi:1,army:4}[cscope.key||"single"];
+  var h="";for(var i=0;i<n;i++)h+=M.bot(i===0&&n>1?SQ.operations.c:"#4f46e5",{cmd:i===0&&n>1});
+  cviz.innerHTML=h+'<p class="empty" style="flex-basis:100%;padding:8px 0 0">'+(n>1?"A custom squad plus a Commander":"One agent, built just for you")+'</p>';
+  root.querySelector("[data-cest]").innerHTML='<div class="est__row big"><span>Custom build</span><b>'+cscope.price+'</b></div>'+
+   '<div class="est__row"><span>Systems to connect</span><b>'+ctools+'</b></div>'+
+   '<div class="est__row"><span>Agent Care</span><b>from 5% of build/mo</b></div>'+
+   '<div class="est__row"><span>Agent Blueprint</span><b>'+money(PRICE.blueprint)+'*</b></div>'+
+   '<div class="est__row"><span>Deployment</span><b>scoped after Blueprint</b></div>'+
+   '<p class="est__note">*Credited toward your build within 60 days. Custom code we write for you is yours. Monthly Subscribe-to-Own options are quoted in your Blueprint. Starting points, not a quote.</p>';
+}
+root.querySelectorAll(".cscope button").forEach(function(b){b.addEventListener("click",function(){root.querySelectorAll(".cscope button").forEach(function(x){x.setAttribute("aria-checked",String(x===b))});cscope={key:b.dataset.scope,label:b.querySelector("b").textContent,price:b.querySelector("em").textContent};cest();})});
+panes.custom.querySelectorAll(".seg button").forEach(function(b){b.addEventListener("click",function(){ctools=b.dataset.tools;panes.custom.querySelectorAll(".seg button").forEach(function(x){x.setAttribute("aria-pressed",String(x===b))});cest();})});
 /* restore / URL params */
 try{var sv=JSON.parse(localStorage.getItem("maa-army")||"null");if(sv&&sv.q){q=sv.q;model=sv.model||"own";help=sv.help||"dfy";}}catch(err){}
 var u=new URLSearchParams(location.search);
 if(u.get("add")){u.get("add").split(",").forEach(function(id,ix){if(BY[id]){if(!q[id])q[id]=1;if(!ix)tab=BY[id][2];}});}
 if(u.get("squad")&&SQ[u.get("squad")])tab=u.get("squad");
-root.querySelectorAll(".seg button").forEach(function(x){x.setAttribute("aria-pressed",String(x.dataset.m===model))});
+panes0.querySelectorAll(".seg button").forEach(function(x){x.setAttribute("aria-pressed",String(x.dataset.m===model))});
 root.querySelector("#help").value=help;
-render();
+if(u.get("lane")==="custom")setLane("custom");else render();
 })();

@@ -3,26 +3,29 @@
 > The AI Agent Factory by Eye To Ad Media (headquartered in Denver, Colorado; building for businesses since 2012). Businesses and individuals order custom AI agents, from 1 to 100, each built to do one job well, with human approval on sensitive actions.
 
 Key facts:
-- Two ownership models. Build & Own: Scout from $1,500, Specialist from $3,500, Commander from $7,500 per agent (one-time), optional Agent Care from $99/mo per agent. Subscribe-to-Own: from $149, $299 or $599 per agent per month, Care included, 2-4 year term with a buyout option at fair market value.
+- Tagline: Your success is the mission. Order one agent or hundreds; franchises can run thousands of copies of one agent.
+- Lane 1, ready-made (tested) agents: own a Scout from $1,500, Specialist from $3,500, Commander from $7,500; or Subscribe-to-Own from $149, $299 or $599 per agent per month plus a one-time setup of $500, $1,000 or $1,500, Care included, 2-4 year term with a buyout option. Optional Agent Care from $99/mo per agent.
+- Lane 2, custom-built agents: single workflow from $4,000, multi-step $7,500-$15,000, custom multi-agent armies from $15,000; Care from 5% of the build per month.
+- Ownership: clients own their agent's setup, their data and a permanent license to run it; custom code written for a client is theirs; the company keeps its general engine and templates and never reuses client data.
 - Agent Blueprint (discovery and written plan): $750, credited toward the build within 60 days. Development is quoted; deployment is scoped after the Blueprint.
 - Help levels: Done-For-You, Co-Pilot, Handoff. Usage costs (AI model, phone minutes, software) billed at cost or on the client's accounts.
 - Contact: 1-800-481-8638, sales@eyetoad.com, 1001 Bannock St #660, Denver, CO 80204.
 
 ## Pages
-- [AI Agents for Business, Built to Order | My AI Agent Army](https://www.myaiagentarmy.com/): Custom AI agents for business: order 1 to 100 agents, each built to do one job well. AI receptionists, sales, support and more. Get your time back.
+- [AI Agents for Business, Built to Order | My AI Agent Army](https://www.myaiagentarmy.com/): Custom AI agents for business: order one agent or hundreds, each built to do one job well. AI receptionists, sales, support and more. Get your time back.
 - [The Agent Factory](https://www.myaiagentarmy.com/factory/): Build your AI agent team in minutes. Pick 1 to 100 agents, choose Build & Own or Subscribe-to-Own, and see your starting estimate instantly.
 - [How the Agent Factory Works](https://www.myaiagentarmy.com/how-it-works/): How our AI agent development works: Blueprint, build, test, deploy in waves and Care. Custom AI agents designed like good hires, with human approval.
 - [The Time-Back Calculator](https://www.myaiagentarmy.com/time-back/): How many hours could AI agents give you back? Slide in your real week to see hours per week, workweeks per year and what that time is worth.
-- [AI Agent Pricing](https://www.myaiagentarmy.com/pricing/): AI agent pricing from $1,500 to build or $149/mo to subscribe-to-own. Scout, Specialist and Commander ranks, squad pricing, and honest deployment scoping.
+- [AI Agent Pricing](https://www.myaiagentarmy.com/pricing/): AI agent pricing: ready-made agents from $1,500 to own or $149/mo plus setup, custom-built agents from $4,000. Own your agent or subscribe.
 - [Safety Built Into Every Agent](https://www.myaiagentarmy.com/safety/): How we keep AI agents safe: one job per agent, least access, human approval on sensitive actions, instant hand-off to people, full logs and an off switch.
 - [Where AI Agents Are Headed](https://www.myaiagentarmy.com/future/): Where agentic AI and the AI workforce are headed, in sourced charts: Gartner and Microsoft forecasts, search demand, and what it means for your business.
 - [AI Agent Questions, Answered](https://www.myaiagentarmy.com/faq/): Answers to common questions about AI agents: what they do, what they cost, buying one versus many, deployment, safety, ownership and personal agents.
 - [About the Agent Factory](https://www.myaiagentarmy.com/about/): My AI Agent Army is built by Eye To Ad Media, headquartered in Denver and building for businesses since 2012. Meet the team and how we work.
 - [Contact the Agent Factory](https://www.myaiagentarmy.com/contact/): Talk to a real person about AI agents for your business. Call 1-800-481-8638 or send a message. Headquartered in Denver, working with businesses everywhere.
 - [Meet the Agents](https://www.myaiagentarmy.com/agents/): Browse 34 AI agents for small business across seven squads: receptionist, sales, customer service, marketing, operations, admin and personal life.
-- [AI Receptionist: Answer Every Call, Even When You Can't](https://www.myaiagentarmy.com/agents/receptionist/): An AI receptionist that answers every call, books appointments and texts you a recap. Build & Own from $3,500 or Subscribe-to-Own from $299/mo.
-- [AI Customer Service Agents That Clear the Routine](https://www.myaiagentarmy.com/agents/customer-service/): AI customer service agents that answer FAQs, triage tickets, check order status and prep returns, with a person always one step away. From $149/mo.
-- [AI Sales Agents That Keep Every Lead Warm](https://www.myaiagentarmy.com/agents/sales/): AI sales agents built by a former sales manager: instant lead response, follow-up, quote drafts and CRM cleanup. Your people still close. From $149/mo.
+- [AI Receptionist: Answer Every Call, Even When You Can't](https://www.myaiagentarmy.com/agents/receptionist/): An AI receptionist that answers every call, books appointments and texts you a recap. Build & Own from $3,500 or Subscribe-to-Own from $299/mo + setup.
+- [AI Customer Service Agents That Clear the Routine](https://www.myaiagentarmy.com/agents/customer-service/): AI customer service agents that answer FAQs, triage tickets, check order status and prep returns, with a person always one step away. From $149/mo + setup.
+- [AI Sales Agents That Keep Every Lead Warm](https://www.myaiagentarmy.com/agents/sales/): AI sales agents built by a former sales manager: instant lead response, follow-up, quote drafts and CRM cleanup. Your people still close. From $149/mo + setup.
 - [AI Marketing Agents That Do the Weekly Work](https://www.myaiagentarmy.com/agents/marketing/): AI marketing agents that draft content, post to social and Google Business Profile, request and reply to reviews and monitor your site. You approve first.
 - [AI Operations Agents That Run the Busywork](https://www.myaiagentarmy.com/agents/operations/): AI operations agents for dispatch, inbox triage, document intake, inventory and daily briefings, plus a Commander Agent to coordinate them all.
 - [Admin & Finance Agents That Prepare, So You Can Decide](https://www.myaiagentarmy.com/agents/admin-finance/): AI agents that chase overdue invoices, prep bookkeeping, sort receipts, organize applicants and run onboarding. They prepare; you and your pros decide.

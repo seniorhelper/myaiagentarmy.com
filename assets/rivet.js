@@ -27,7 +27,11 @@ var css='.rv{position:fixed;right:0;bottom:22px;z-index:120;font-family:var(--f-
 '.rv__in{display:flex;gap:8px;padding:10px 12px 12px;background:#fff}'+
 '.rv__in input{flex:1;border:1px solid #d8dbea;border-radius:10px;padding:11px 12px;font:400 .95rem inherit;min-width:0}.rv__in input:focus{outline:0;border-color:#4f46e5;box-shadow:0 0 0 3px #e9e8ff}'+
 '.rv__in button{border:0;background:#4f46e5;color:#fff;border-radius:10px;padding:0 14px;font:600 .9rem inherit;cursor:pointer}'+
-'@media (max-width:600px){.rv{bottom:12px}.rv__tab{width:60px;height:77px;transform:translateX(16px)}.rv__tab svg{width:60px;height:77px}.rv__bub{right:76px;bottom:52px}.rv__pan{right:8px;bottom:8px;width:calc(100vw - 16px);height:calc(100vh - 80px)}}'+
+'@media (max-width:600px){.rv__bub{display:none}.rv{bottom:12px}.rv__tab{width:60px;height:77px;transform:translateX(16px)}.rv__tab svg{width:60px;height:77px}.rv__bub{right:76px;bottom:52px}.rv__pan{right:8px;bottom:8px;width:calc(100vw - 16px);height:calc(100vh - 80px)}}'+
+'.rv.rv--dock .rv__pan{top:0;right:0;bottom:0;height:100vh;width:400px;border-radius:0;border-width:0 0 0 1px;box-shadow:-18px 0 40px -24px rgba(18,23,51,.35)}'+
+'.rv__dockhi{padding:16px 16px 4px;background:linear-gradient(180deg,#f5f4ff,#f7f7fc)}.rv__dockhi h3{margin:0 0 4px;font:700 1.25rem/1.25 var(--f-d,inherit);color:#121733}.rv__dockhi p{margin:0;font-size:.88rem;color:#3d4566}'+
+'.rv__mis{display:flex;flex-wrap:wrap;gap:6px;padding:10px 16px 12px;background:#f7f7fc;border-bottom:1px solid #e2e5f1}.rv__mis button{border:1px solid #c7c4fb;background:#fff;color:#3730a3;border-radius:8px;padding:8px 10px;font:650 .8rem inherit;cursor:pointer}.rv__mis button:hover{background:#4f46e5;color:#fff;border-color:#4f46e5}'+
+'@media (max-width:1099px){.rv.rv--dock .rv__pan{display:none}}'+
 '@media (prefers-reduced-motion:reduce){.rv__float,.rv__wave,.rv__dots i{animation:none}}';
 var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
 
@@ -44,13 +48,16 @@ function rivet(sm){return '<svg viewBox="0 0 92 118" aria-hidden="true"><g class
 
 var A={
  hi:"Hey! I'm Rivet, foreman of the Agent Factory. I can explain what an AI agent does, what it costs, or help you size your army. What's on your plate?",
- price:'Two ways to own agents. <b>Build &amp; Own</b>: Scouts from $1,500, Specialists from $3,500, Commanders from $7,500 (one-time), with optional Agent Care from $99/mo per agent. <b>Subscribe-to-Own</b>: from $149, $299 or $599 a month per agent, Care included, with a buyout option. Squads of 5+ get volume pricing. <a href="/pricing/">See full pricing</a> or <a href="/factory/">build an estimate</a>.',
+ price:'Two lanes. <b>Ready-made agents</b> (from our templates, fastest): own a Scout from $1,500, a Specialist from $3,500 or a Commander from $7,500, or Subscribe-to-Own from $149, $299 or $599 a month plus a one-time setup. <b>Custom-built agents</b> start at $4,000. Squads of 5+ get volume pricing. <a href="/pricing/">See full pricing</a> or <a href="/factory/">build an estimate</a>.',
  deploy:'We quote development. Deployment, meaning hooking agents into your phones, CRM, inbox and permissions, gets scoped after your <a href="/pricing/#blueprint">Agent Blueprint</a> ($750, credited toward your build), because no two businesses have the same setup. You get a written scope and price before anything starts.',
  one:'Yes! Plenty of people start with just one or two agents. The most common first hire is an <a href="/agents/receptionist/">AI Receptionist</a>. Start small, see the hours come back, then add more. <a href="/factory/?add=ai-receptionist">Start with one</a>.',
- many:'You can order anywhere from 1 to 100 agents. Big armies get deployed in waves, starting with the agents that free up the most time fastest. Once you pass about six agents, a <a href="/agents/operations/">Commander Agent</a> keeps them coordinated. <a href="/blog/how-many-ai-agents-does-my-business-need/">How many do you need?</a>',
+ many:'One agent or hundreds. The Factory takes up to 100 per order, and bigger armies are planned with you. Big armies get deployed in waves, starting with the agents that free up the most time fastest. Once you pass about six agents, a <a href="/agents/operations/">Commander Agent</a> keeps them coordinated. <a href="/blog/how-many-ai-agents-does-my-business-need/">How many do you need?</a>',
  recep:'An <a href="/agents/receptionist/">AI Receptionist</a> answers your line in your business name, handles routine questions, books appointments and texts you a recap. Callers can always reach a person. From $3,500 to build or $299/mo subscribed.',
  safe:'Every agent gets one job, the least access it needs, a full activity log and a human approval step on anything that spends money, makes a promise or says something sensitive. <a href="/safety/">How we keep agents safe</a>.',
- own:'<b>Build &amp; Own</b> means you pay once for development and own the agent. <b>Subscribe-to-Own</b> means a lower monthly cost with Care included for 2–4 years, then a buyout option at fair market value. <a href="/pricing/">Compare both</a>.',
+ own:'Yes, you own your agent: your setup, your data and a permanent license to run it. Custom code we write for you is yours outright. We keep only our general engine, which is why ready-made agents cost so much less than custom. <a href="/pricing/#ownership">How ownership works</a>.',
+ ent:'For franchises and multi-location teams we plan enterprise armies: hundreds of agents, or thousands of copies of one agent across locations, rolled out in waves. <a href="/contact/">Plan an enterprise army</a>.',
+ mission:'Watch the demo: your squad is on it. When it pauses, you approve, because nothing important happens without you.',
+ nodemo:'The live demos are on the <a href="/">home page</a> and every <a href="/agents/">squad page</a>. Want me to point you to one?',
  time:'Timelines depend on scope and on how ready your tools and data are. Your Blueprint comes with a written plan and timeline before any build starts. <a href="/how-it-works/">See how it works</a>.',
  what:'An AI agent is software with a goal, tools and rules. It doesn\'t just chat; it takes steps like checking a calendar, booking, drafting and following up, then reports back. <a href="/blog/ai-agents-vs-chatbots-vs-automation/">Agents vs. chatbots vs. automation</a>.',
  life:'Agents aren\'t just for work. <a href="/for/your-life/">Personal agents</a> can handle bills, renewals, family calendars, trip research and life admin, and you approve anything that spends money.',
@@ -60,21 +67,25 @@ var A={
  promise:'Honest answer: nobody can guarantee results with AI, and we won\'t pretend to. What we promise is that we treat your business like our own, build narrow agents that do real work, and keep a human in the loop where it matters.',
  fb:'Good question, and I want to get it right. I can talk about pricing, deployment, how many agents you need, safety, or the AI Receptionist. For anything else a human is one call away at <a href="tel:+18004818638">1-800-481-8638</a>.'
 };
-var RULES=[
+var PRI=[
  [/(price|pricing|cost|how much|\$|expensive|cheap|budget)/i,"price"],
  [/(deploy|install|set ?up|integrat|connect|crm|hook)/i,"deploy"],
- [/(just one|only one|one agent|two agents|1 agent|2 agents|small|start)/i,"one"],
- [/(100|hundred|army|lots|many|how many|fleet|scale)/i,"many"],
- [/(reception|phone|call|answer)/i,"recep"],
  [/(safe|secur|privacy|data|approve|trust|risk|wrong)/i,"safe"],
- [/(subscri|lease|own|buyout|monthly)/i,"own"],
+ [/(subscri|lease|own|buyout|monthly|license)/i,"own"],
+ [/(enterprise|franchise|thousand|locations)/i,"ent"],
  [/(how long|timeline|weeks|fast|when)/i,"time"],
+ [/(human|person|talk|contact|zach|email|reach)/i,"human"],
+ [/(guarantee|promise|results|roi)/i,"promise"],
+ [/(just one|only one|one agent|two agents|1 agent|2 agents|start small)/i,"one"],
+ [/(100|hundred|army|lots|many|how many|fleet|scale)/i,"many"]
+];
+var MIS=[[/(call|phone|reception|answer)/i,"calls"],[/(lead|follow)/i,"leads"],[/(invoice|unpaid|paid|collect)/i,"invoices"],[/(review|star)/i,"reviews"],[/(plan|brief|morning|week|calendar|inbox|email)/i,"brief"],[/(support|ticket|order status|customer service)/i,"support"],[/(bill|renewal|family|personal|life)/i,"life"]];
+var RULES=[
+ [/(reception|phone|call|answer)/i,"recep"],
  [/(what is|what's an|chatbot|explain|agent do|difference)/i,"what"],
  [/(life|personal|family|bills|home life)/i,"life"],
- [/(human|person|talk|contact|zach|email|reach)/i,"human"],
  [/(save time|hours|time back|calculator)/i,"time2"],
  [/(industr|contractor|real estate|ecommerce|law|agency|plumb|roof)/i,"ind"],
- [/(guarantee|promise|results|roi)/i,"promise"],
  [/^(hi|hey|hello|yo|sup)/i,"hi"]
 ];
 var QR=[["What does it cost?","price"],["Can I buy just one?","one"],["Who handles deployment?","deploy"],["Is it safe?","safe"],["Talk to a human","human"]];
@@ -87,13 +98,27 @@ document.body.appendChild(w);
 var log=w.querySelector(".rv__log"),qr=w.querySelector(".rv__qr"),inp=w.querySelector("input"),started=false;
 function add(html,who){var m=document.createElement("div");m.className="rv__m "+who;if(who==="u")m.textContent=html;else m.innerHTML=html;log.appendChild(m);log.scrollTop=log.scrollHeight;return m;}
 function say(key){var t=add('<span class="rv__dots"><i></i><i></i><i></i></span>',"b");setTimeout(function(){t.innerHTML=A[key];log.scrollTop=log.scrollHeight;},RM?0:550);}
-function ask(text){add(text,"u");var k="fb";for(var i=0;i<RULES.length;i++){if(RULES[i][0].test(text)){k=RULES[i][1];break;}}say(k);}
+function find(list,t){for(var i=0;i<list.length;i++)if(list[i][0].test(t))return list[i][1];return null;}
+function mission(id){var M=window.MAA;if(M&&M.playMission&&M.playMission(id)){say("mission");}else say("nodemo");}
+function ask(text){add(text,"u");var k=find(PRI,text);if(k){say(k);return;}var mi=find(MIS,text);if(mi&&window.MAA&&window.MAA.MISSIONS&&document.querySelector(".mc")){mission(mi);return;}say(find(RULES,text)||"fb");}
 QR.forEach(function(q){var b=document.createElement("button");b.type="button";b.textContent=q[0];b.addEventListener("click",function(){add(q[0],"u");say(q[1]);});qr.appendChild(b);});
 function open(){w.classList.add("open");if(!started){started=true;say("hi");}setTimeout(function(){inp.focus()},50);}
 w.querySelector(".rv__tab").addEventListener("click",open);
-w.querySelector(".rv__x").addEventListener("click",function(){w.classList.remove("open");w.querySelector(".rv__tab").focus();});
+function undock(){if(!w.classList.contains("rv--dock"))return;w.classList.remove("rv--dock");document.body.classList.remove("docked");var dh=w.querySelector(".rv__dockhi"),dm=w.querySelector(".rv__mis");dh&&dh.remove();dm&&dm.remove();try{localStorage.setItem("maa-dock-off","1")}catch(e){}setTimeout(function(){window.dispatchEvent(new Event("resize"))},50);}
+w.querySelector(".rv__x").addEventListener("click",function(){var d=w.classList.contains("rv--dock");w.classList.remove("open");undock();if(!d)w.querySelector(".rv__tab").focus();});
+/* split-screen opener: home page, wide screens, first visit */
+(function(){var want=document.body.hasAttribute("data-dock");var off=false;try{off=localStorage.getItem("maa-dock-off")==="1"}catch(e){}
+ if(!want||off||window.innerWidth<1100)return;
+ w.classList.add("rv--dock","open");document.body.classList.add("docked");started=true;
+ var pan=w.querySelector(".rv__pan"),hd=w.querySelector(".rv__hd");
+ var hi=document.createElement("div");hi.className="rv__dockhi";hi.innerHTML='<h3>What\u2019s eating your week?</h3><p>Pick a mission and watch a squad of agents handle it on the left. Or ask me anything about pricing, ownership or how it works.</p>';
+ var ms=document.createElement("div");ms.className="rv__mis";ms.setAttribute("role","group");ms.setAttribute("aria-label","Run a demo mission");
+ [["Missed calls","calls"],["New leads","leads"],["Unpaid invoices","invoices"],["More reviews","reviews"],["Plan my week","brief"]].forEach(function(m){var b=document.createElement("button");b.type="button";b.textContent=m[0];b.addEventListener("click",function(){add("Show me: "+m[0],"u");mission(m[1]);});ms.appendChild(b);});
+ hd.after(hi);hi.after(ms);
+ add("Hey, I\u2019m Rivet, foreman of the Agent Factory. One agent or hundreds, each built to do one job really well. The demo on the left is already running a mission. Tap another one, or close me anytime with \u00d7 and I\u2019ll wait in the corner.","b");
+})();
 w.querySelector("form").addEventListener("submit",function(e){e.preventDefault();var v=inp.value.trim();if(!v)return;inp.value="";ask(v);});
-document.addEventListener("keydown",function(e){if(e.key==="Escape"&&w.classList.contains("open"))w.classList.remove("open");});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&w.classList.contains("open")){w.classList.remove("open");undock();}});
 var bub=w.querySelector(".rv__bub");
 setTimeout(function(){if(!started){bub.classList.add("on");setTimeout(function(){bub.classList.remove("on")},6000);}},9000);
 })();
