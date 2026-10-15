@@ -23,25 +23,34 @@ var CAT=[
  ["ticket-triage","Ticket Triage Agent","customer-service","scout","Reads incoming requests, tags urgency and routes each one to the right person."],
  ["order-status","Order Status Agent","customer-service","scout","Looks up orders and shipping so customers get answers without waiting."],
  ["returns","Returns & Exchanges Agent","customer-service","specialist","Walks customers through your return policy and prepares the paperwork for approval."],
- ["lead-responder","Speed-to-Lead Responder","sales","specialist","Replies to new web, form and ad leads within minutes, day or night."],
+ ["lead-responder","Speed-to-Lead Responder","sales","specialist","Drafts a personal reply to every new web, form and lead-platform lead within minutes, day or night."],
  ["follow-up","Follow-Up Agent","sales","specialist","Keeps every open quote and lead warm with timely, on-brand follow-ups."],
+ ["reactivation","Customer Reactivation Agent","sales","specialist","Finds past customers who are due for service and drafts a personal check-in with a real reason to call."],
  ["quote-drafter","Quote Drafting Agent","sales","specialist","Turns notes and price lists into ready-to-review quotes and proposals."],
  ["crm-updater","CRM Hygiene Agent","sales","scout","Logs calls, cleans duplicates and keeps your pipeline up to date."],
  ["lead-researcher","Lead Research Agent","sales","scout","Researches prospects and companies before you pick up the phone."],
  ["content-drafter","Content Drafting Agent","marketing","specialist","Drafts blogs, emails and pages in your voice for you to approve."],
  ["social-poster","Social Posting Agent","marketing","scout","Plans, drafts and schedules social posts on a steady rhythm."],
  ["gbp-poster","Google Business Profile Agent","marketing","scout","Keeps your Google Business Profile active with fresh, approved posts."],
- ["review-requester","Review Request Agent","marketing","scout","Asks happy customers for reviews at the right moment, the right way."],
+ ["review-requester","Review Request Agent","marketing","scout","Asks every finished customer for an honest Google review, with no incentives and one gentle follow-up."],
  ["review-responder","Review Reply Agent","marketing","scout","Drafts thoughtful replies to every review for you to approve."],
- ["seo-monitor","Rank & Site Monitor Agent","marketing","scout","Watches rankings, uptime and broken pages and flags what changed."],
+ ["seo-monitor","Site Health Agent","marketing","scout","Crawls your site for broken links, missing titles and slow pages, and reports what changed since last week."],
+ ["agent-ready","Agent-Ready Auditor","marketing","specialist","Scores how ready your business is for AI assistants that search and book for customers, then writes the fixes."],
+ ["ai-visibility","AI Visibility Agent","marketing","specialist","Tracks whether AI assistants recommend you for buyer questions, and which competitors they name instead."],
+ ["listing-check","Listing Consistency Agent","marketing","scout","Checks your name, address, phone and hours across Google, Yelp, Facebook and other listings."],
+ ["content-repurposer","Content Repurposer","marketing","specialist","Turns one article into a week of posts, a newsletter blurb, FAQs and a video script."],
  ["scheduler","Scheduling & Dispatch Agent","operations","specialist","Builds and reshuffles the schedule when jobs, people or weather change."],
  ["inbox-triage","Inbox Triage Agent","operations","scout","Sorts the inbox, drafts replies and surfaces only what needs you."],
  ["doc-processor","Document Intake Agent","operations","specialist","Reads forms, PDFs and attachments and files the data where it belongs."],
  ["inventory-watch","Inventory Watch Agent","operations","scout","Tracks stock levels and warns you before you run out."],
- ["reporting","Daily Briefing Agent","operations","scout","Sends a short morning summary of calls, leads, jobs and money."],
- ["commander","Commander Agent","operations","commander","Coordinates your other agents, routes work, handles approvals and reports up to you."],
- ["invoice-chaser","Invoice Reminder Agent","admin-finance","scout","Sends polite, persistent reminders on unpaid invoices."],
- ["bookkeeping-prep","Bookkeeping Prep Agent","admin-finance","specialist","Categorizes transactions and prepares books for your bookkeeper or CPA to review."],
+ ["reporting","Daily Briefing Agent","operations","scout","A morning email with your schedule, double bookings, new leads, customer issues and drafts waiting."],
+ ["meeting-actions","Meeting to Actions Agent","operations","specialist","Turns meeting transcripts and notes into tasks with owners and due dates, plus a recap email."],
+ ["desktop-organizer","Desktop Organizer","operations","scout","Sorts a messy Desktop and Downloads folder. Moves files only after you approve the plan, and can undo."],
+ ["commander","Commander Agent","operations","commander","Watches every agent: missed runs, errors, approvals waiting and what was sent, in one daily digest."],
+ ["invoice-chaser","Invoice Reminder Agent","admin-finance","scout","Polite, escalating reminders on unpaid invoices, plus an aging report. Late or disputed ones go to you."],
+ ["bookkeeping-prep","P&L Builder Agent","admin-finance","specialist","Turns bank and card exports into a categorized monthly profit and loss spreadsheet for your CPA."],
+ ["spend-leak","Spend Leak Finder","admin-finance","specialist","Finds price hikes, duplicate charges, overlapping tools and renewals coming up in your statements."],
+ ["renewal-watch","Renewal Sentinel","admin-finance","specialist","Watches domains, SSL certificates, licenses, insurance and contracts, with cancel-by dates."],
  ["expense-sorter","Receipt & Expense Agent","admin-finance","scout","Collects receipts, matches them to expenses and flags gaps."],
  ["hr-screener","Applicant Screening Agent","admin-finance","specialist","Organizes applications against criteria you set; people make every hiring decision."],
  ["onboarding","Onboarding Agent","admin-finance","specialist","Walks new hires and new clients through paperwork, accounts and first steps."],
@@ -52,6 +61,8 @@ var CAT=[
  ["research-assistant","Research Assistant","life","scout","Digs into any question and hands back a short, sourced summary."]
 ];
 var BY={};CAT.forEach(function(r){BY[r[0]]=r});
+/* agents already built and tested in our agent suite */
+var READY={"lead-responder":1,"reactivation":1,"review-requester":1,"gbp-poster":1,"seo-monitor":1,"agent-ready":1,"ai-visibility":1,"listing-check":1,"content-repurposer":1,"reporting":1,"meeting-actions":1,"desktop-organizer":1,"commander":1,"invoice-chaser":1,"bookkeeping-prep":1,"spend-leak":1,"renewal-watch":1};M.READY=READY;
 var PRESETS=[
  ["Just one","AI Receptionist",{"ai-receptionist":1}],
  ["Starter squad","3 agents",{"ai-receptionist":1,"lead-responder":1,"review-requester":1}],
@@ -79,7 +90,7 @@ function drawRoles(){
     var c=SQ[r[2]].c,n=q[r[0]]||0,p=PRICE[r[3]];
     var d=document.createElement("div");d.className="role"+(n?" has":"");d.style.setProperty("--c",c);
     d.innerHTML=M.bot(c,{cmd:r[3]==="commander"})+'<div style="flex:1;min-width:0"><h4></h4><p></p><div class="role__ft"><span><span class="tier tier--'+r[3]+'">'+tierName(r[3])+'</span> <small style="display:block;color:var(--muted);font-size:.78rem;margin-top:5px">from '+money(p.build)+' or '+money(p.sto)+'/mo</small></span><span class="qty"><button type="button" aria-label="Remove one">−</button><output aria-live="polite">'+n+'</output><button type="button" aria-label="Add one">+</button></span></div></div>';
-    d.querySelector("h4").textContent=r[1];d.querySelector("p").textContent=r[4];
+    d.querySelector("h4").textContent=r[1];if(READY[r[0]]){var rb=document.createElement("span");rb.className="rdy";rb.textContent="Built & tested";d.querySelector("h4").appendChild(rb);}d.querySelector("p").textContent=r[4];
     var bs=d.querySelectorAll(".qty button");
     bs[0].setAttribute("aria-label","Remove one "+r[1]);bs[1].setAttribute("aria-label","Add one "+r[1]);
     bs[0].addEventListener("click",function(){set(r[0],(q[r[0]]||0)-1)});

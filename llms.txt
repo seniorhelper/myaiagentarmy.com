@@ -9,6 +9,7 @@ Key facts:
 - Ownership: clients own their agent's setup, their data and a permanent license to run it; custom code written for a client is theirs; the company keeps its general engine and templates and never reuses client data.
 - Agent Blueprint (discovery and written plan): $750, credited toward the build within 60 days. Development is quoted; deployment is scoped after the Blueprint.
 - Help levels: Done-For-You, Co-Pilot, Handoff. Usage costs (AI model, phone minutes, software) billed at cost or on the client's accounts.
+- Built and tested now: 17 ready-made agents run today with automated tests (Daily Briefing, Speed-to-Lead Responder, Review Request, Customer Reactivation, Invoice Reminder, P&L Builder, Spend Leak Finder, Renewal Sentinel, Google Business Profile, Content Repurposer, Meeting to Actions, Desktop Organizer, Site Health, Agent-Ready Auditor, AI Visibility, Listing Consistency, Commander). Real sample output: https://www.myaiagentarmy.com/see-them-work/
 - Contact: 1-800-481-8638, sales@eyetoad.com, 1001 Bannock St #660, Denver, CO 80204.
 
 ## Pages
@@ -22,7 +23,8 @@ Key facts:
 - [AI Agent Questions, Answered](https://www.myaiagentarmy.com/faq/): Answers to common questions about AI agents: what they do, what they cost, buying one versus many, deployment, safety, ownership and personal agents.
 - [About the Agent Factory](https://www.myaiagentarmy.com/about/): My AI Agent Army is built by Eye To Ad Media, headquartered in Denver and building for businesses since 2012. Meet the team and how we work.
 - [Contact the Agent Factory](https://www.myaiagentarmy.com/contact/): Talk to a real person about AI agents for your business. Call 1-800-481-8638 or send a message. Headquartered in Denver, working with businesses everywhere.
-- [Meet the Agents](https://www.myaiagentarmy.com/agents/): Browse 34 AI agents for small business across seven squads: receptionist, sales, customer service, marketing, operations, admin and personal life.
+- [Meet the Agents](https://www.myaiagentarmy.com/agents/): Browse 43 AI agents for small business across seven squads: receptionist, sales, customer service, marketing, operations, admin and personal life.
+- [See Them Work](https://www.myaiagentarmy.com/see-them-work/): Real reports and drafts from 17 AI agents we built and tested, run on a sample plumbing company: lead replies, P&L, renewals, AI readiness and more.
 - [AI Receptionist: Answer Every Call, Even When You Can't](https://www.myaiagentarmy.com/agents/receptionist/): An AI receptionist that answers every call, books appointments and texts you a recap. Build & Own from $3,500 or Subscribe-to-Own from $299/mo + setup.
 - [AI Customer Service Agents That Clear the Routine](https://www.myaiagentarmy.com/agents/customer-service/): AI customer service agents that answer FAQs, triage tickets, check order status and prep returns, with a person always one step away. From $149/mo + setup.
 - [AI Sales Agents That Keep Every Lead Warm](https://www.myaiagentarmy.com/agents/sales/): AI sales agents built by a former sales manager: instant lead response, follow-up, quote drafts and CRM cleanup. Your people still close. From $149/mo + setup.
